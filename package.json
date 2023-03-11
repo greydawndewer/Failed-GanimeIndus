@@ -18,10 +18,12 @@
   "license": "UNLICENSED",
   "dependencies": {
     "bootstrap": "^5.3.0-alpha1",
+    "component-emitter": "github:component/emitter",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "heroku": "^8.0.1",
     "mongodb": "^5.0.0",
-    "mongoose": "^6.9.1"
+    "mongoose": "^6.9.1",
+    "popup": "^0.0.3"
   }
 }

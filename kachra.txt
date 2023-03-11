@@ -1,0 +1,66 @@
+app.post('/pages/home', (req, res) => {
+  //res.send(`Full name is:${req.body.fname} ${req.body.lname}.`);
+  /*const schema = {
+    fname: String,
+    lname: String
+  }
+  const Note = mongoose.model("Note", schema);
+     x = req.body.fname;
+     y = req.body.lname;
+      let newNote = new Note ({
+          fname: x,
+          lname: y,
+});
+      newNote.save();
+      res.send("<h1>Your Name is : " + x + " " + y + "." + "</h1>");
+      res.redirect('/pages/home.html');*/
+  const getNotes1 = async () => {
+        const result = await Notes.find()
+        .select({fname:1});
+        console.log(result[result.length - 1].fname + "1");
+        return await result[result.length - 1].fname;
+      }  
+  const mainFunction1 = async () => {
+        const result = await getNotes1();
+        return result;
+      }
+  const getNotes2 = async () => {
+        const result = await Notes.find()
+        .select({lname:1});
+        console.log(result[result.length - 1].lname + "2");
+        return await result[result.length - 1].lname;
+      }      
+  const mainFunction2 = async () => {
+        const result = await getNotes2();
+        return result;
+      }    
+  const schema = {
+        fname: String,
+        lname: String
+      }
+  //const Note = mongoose.model("Note", schema);
+  x = req.body.fname;
+  y = req.body.lname;
+  let newNote = new Notes ({
+              fname: x,
+              lname: y,
+    });
+    let x1; 
+    let y1;
+    (async () => {
+      console.log(await mainFunction1() + "3")
+      x1 = await mainFunction1();
+    })();
+    //let x1 = getNotes1();
+    (async () => {
+      console.log(await mainFunction2() + "4")
+      y1 = await mainFunction2();
+    })();
+    console.log(y1);
+    console.log(x1);
+    //let y1 = getNotes2();
+
+    newNote.save();
+    res.send("<body style='background-color: black;'><h1 style='color: white;'>Your Name is : " + x1 + " " + y1 + "." + "</h1></body>");
+    res.redirect('/pages/home.html');    
+});
