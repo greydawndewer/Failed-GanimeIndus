@@ -36,16 +36,15 @@ app.post('/pages/signup.html', async (req, res) => {
           count: z
       });
       newCount.save();*/
+        result = await Notes.findOne({fname:req.body.fname});
+        let xyz = null;
         if( req.body.fname == "" && req.body.lname == "") {
           console.log("Empty shit not allowed");
           res.redirect('signup.html');
-        }
-        result = await Notes.findOne({fname:req.body.fname});
-        let xyz = null;
-        if (result != xyz) {
+        } else if (result != xyz && !(req.body.fname == "" && req.body.lname == "")) {
           console.log("Alredy Taken");
           res.redirect('signup.html');
-        } else {  
+        } else {    
           x = req.body.fname;
           y = req.body.lname;
           let newNote = new Notes ({
@@ -57,7 +56,8 @@ app.post('/pages/signup.html', async (req, res) => {
           res.redirect('login.html');    
       }
 });
-app.post('/pages/login.html', async (req, res) => {
+app.post('pages/login.html', async (req, res) => {
+    console.log("YAS")
     x = req.body.fname;
     y = req.body.lname;
     try {
