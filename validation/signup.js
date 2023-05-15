@@ -7,7 +7,7 @@ module.exports = function validateRegisterInput(data) {
   data.lname = !isEmpty(data.lname) ? data.lname : "";
 // Name checks
   if (Validator.isEmpty(data.fname)) {
-    errors.fname = "UserName field is required";
+    errors.fname = "Username field is required";
   }
 // Email checks
   /*if (Validator.isEmpty(data.email)) {
@@ -17,9 +17,9 @@ module.exports = function validateRegisterInput(data) {
   }*/
 // Password checks
   if (Validator.isEmpty(data.lname)) {
-    errors.lname = "Password field is required";1
+    errors.lname = "Password field is required";
   }
-if (!Validator.isLength(data.lname, { min: 6, max: 30 })) {
+  else if (!Validator.isLength(data.lname, { min: 6, max: 30 })) {
     errors.lname = "Password must be at least 6 characters";
   }
 return {

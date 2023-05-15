@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const bodyParser = require('body-parser');
 const jwt = require("jsonwebtoken");
+const keys = require("../../config/key")
 // Load input validation 
 const validateRegisterInput = require("J:/Storage_Vent/Programming_Module/CodingBranch/My Administrative Projetcs/Project-Ganime-Industry-v2/main2/Ganime-Indstustries/validation/signup.js");
 const validateLoginInput = require("J:/Storage_Vent/Programming_Module/CodingBranch/My Administrative Projetcs/Project-Ganime-Industry-v2/main2/Ganime-Indstustries/validation/login.js");
@@ -23,6 +24,7 @@ router.post("/signup", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
     if (!isValid) {
+      console.log("NAKA")
       return res.status(400).json(errors);
     }
   User.Notes.findOne({ fname: req.body.fname }).then(user => {

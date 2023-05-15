@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router";
+import { withRouter } from "../../utils/helper";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
-class Register extends Component {
-  constructor() {
-    super();
+
+class SignUp extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
+      fname: "",
+      lname: "",
       errors: {}
     };
   }
@@ -21,39 +21,45 @@ class Register extends Component {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
-  };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
-    }
   }
 
-onChange = e => {
+  componentDidUpdate(prevProps) {
+    if (prevProps.errors !== this.props.errors) {
+      this.setState({
+        errors: this.props.errors
+      });
+    }
+    if (prevProps.errors !== this.props.errors) {
+      const errorsObj = typeof this.props.errors === "string" ? { error: this.props.errors } : this.props.errors;
+      this.setState({
+        errors: errorsObj
+      });
+  }
+}
+
+  onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
-onSubmit = e => {
+
+  onSubmit = e => {
     e.preventDefault();
-const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
+    const newUser = {
+      fname: this.state.fname,
+      lname: this.state.lname,
     };
     this.props.registerUser(newUser, this.props.history); 
-console.log(newUser);
+    console.log(newUser);
   };
-render() {
+
+  render() {
     const { errors } = this.state;
-return (
+
+    return (
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
             <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
+              <i className="material-icons left">keyboard_backspace</i> Back to home
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
@@ -67,44 +73,30 @@ return (
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.name}
-                  error={errors.name}
-                  id="name"
+                  value={this.state.fname}
+                  error={errors.fname}
+                  id="fname"
                   type="text"
                   className={classnames("", {
-                    invalid: errors.username
+                    invalid: errors.fname
                   })}
                 />
-                <label htmlFor="name">Username</label>
-                <span className="red-text">{errors.username}</span>
+                <label htmlFor="fname">First Name</label>
+                <span className="red-text">{errors.fname}</span>
               </div>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
+                  value={this.state.lname}
+                  error={errors.lname}
+                  id="lname"
                   type="password"
                   className={classnames("", {
-                    invalid: errors.password
+                    invalid: errors.lname
                   })}
                 />
-                <label htmlFor="password">Password</label>
-                <span className="red-text">{errors.password}</span>
-              </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
-                  id="password2"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password2
-                  })}
-                />
-                <label htmlFor="password2">Confirm Password</label>
-                <span className="red-text">{errors.password2}</span>
+                <label htmlFor="lname">Last Name</label>
+                <span className="red-text">{errors.lname}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
@@ -126,19 +118,18 @@ return (
       </div>
     );
   }
-}
+  }
 
-
-Register.propTypes = {
+SignUp.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
+
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
-export default connect(
-  mapStateToProps,
-  { registerUser }
-)(withRouter(Register));
+
+export default connect(mapStateToProps, { registerUser }
+)(withRouter(SignUp));

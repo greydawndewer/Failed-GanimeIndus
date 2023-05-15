@@ -101,7 +101,7 @@ const validateLoginInput = require("J:\\Storage_Vent\\Programming_Module\\Coding
 const User = require("J:\\Storage_Vent\\Programming_Module\\CodingBranch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\model.js");
 
 app.post("/signup", (req, res) => {
-  console.log("GONE")
+  console.log("GONE121")
     // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
@@ -120,7 +120,7 @@ app.post("/signup", (req, res) => {
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.lname, salt, (err, hash) => {
             if (err) throw err;
-            console.log("GONE2")
+            console.log("GONE212")
             newUser.lname = hash;
             newUser
               .save()
@@ -132,6 +132,9 @@ app.post("/signup", (req, res) => {
     });
   });
 
+app.get("/", (req, res) => {
+    res.send("<h1>DEEZE NUTZ</h1>")
+});
 
   app.post("/login", (req, res) => {
     // Form validation
@@ -184,12 +187,12 @@ app.use(passport.initialize());
 require("J:\\Storage_Vent\\Programming_Module\\CodingBranch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\config\\passport")(passport);
 // Passport middleware
 // Routes
-//app.use("E:\\The_Storage_Vent\\Programming_Module\\Coding Branch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\routes\\api\\user", users);
-/*app.use(express.static(path.join(__dirname, 'public')))
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('index'))*/
-/*app.get("/*", function(req, res) {
+app.use("E:\\The_Storage_Vent\\Programming_Module\\Coding Branch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\routes\\api\\user", users);
+//app.use(express.static(path.join(__dirname, 'public')))
+//app.set('views', path.join(__dirname, 'views'))
+//app.set('view engine', 'ejs')
+//app.get('/', (req, res) => res.render('index'))
+app.get("/*", function(req, res) {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
-});*/
+});
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))

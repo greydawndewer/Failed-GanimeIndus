@@ -8,7 +8,7 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
+      name: "",
       password: "",
       errors: {}
     };
@@ -66,15 +66,15 @@ return (
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="username"
+                  value={this.state.name}
+                  error={errors.name}
+                  id="name"
                   type="text"
                   className={classnames("", {
-                    invalid: errors.username || errors.usernamenotfound
+                    invalid: errors.name || errors.namenotfound
                   })}
                 />
-                <label htmlFor="username">UserName</label>
+                <label htmlFor="name">UserName</label>
                 <span className="red-text">
                   {errors.username}
                   {errors.usernamenotfound}

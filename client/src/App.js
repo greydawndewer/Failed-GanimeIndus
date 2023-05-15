@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { Component} from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -7,11 +7,12 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import Navbar from "./components/layout/Navbar";
+//import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
-import Register from "./components/auth/Register";
+import SignUp from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
+import PrivateRoute1 from "./components/private-route/PR2";
 import Dashboard from "./components/dashboard/Dashboard";
 
 // Check for token to keep user logged in
@@ -36,20 +37,20 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
-      <div class="App">
+
         <Provider store={store}>
         <Router>
-        <Routes>
-          <Route path="/" element={ <Landing/>} />
-          <Route path="/register" element={ <Register/> } />
-          <Route path="/login" element={ <Login/>} />
-          <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-          </Switch>
-        </Routes>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={ <Landing/>} />
+            <Route path="/signup" element={ <SignUp/> } />
+            <Route path="/login" element={ <Login/>} />
+            <Route path="/dashboard" element={ <PrivateRoute1><Dashboard/></PrivateRoute1>} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </div>  
       </Router>
       </Provider>
-      </div>
     );
   }
 }

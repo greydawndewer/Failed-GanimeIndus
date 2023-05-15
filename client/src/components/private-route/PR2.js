@@ -3,20 +3,16 @@ import { Route, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+const PrivateRoute1 = ({ component: Component, isAuthenticated, ...rest }) => (
   <Route
     {...rest}
-    element={
-      isAuthenticated ? (
-        <Component />
-      ) : (
-        <Navigate to="/login" replace={true} />
-      )
+    render={(props) =>
+      isAuthenticated ? <Component {...props} /> : <Navigate to="/login" />
     }
   />
 );
 
-PrivateRoute.propTypes = {
+PrivateRoute1.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
@@ -24,4 +20,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(PrivateRoute1);
