@@ -48,7 +48,7 @@ class SignUp extends Component {
       lname: this.state.lname,
     };
     console.log(newUser);
-    this.props.dispatch(registerUser(newUser, this.props.history)); 
+    this.props.registerUser(newUser, this.props.history); 
     console.log(newUser);
   };
 
