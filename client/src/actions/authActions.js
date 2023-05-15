@@ -9,7 +9,11 @@ import {
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("/signup", userData)
+    .post("/signup", userData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     .then(res => history.push("/login")) // re-direct to login on successful register
     .catch(err =>
       dispatch({

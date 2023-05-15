@@ -102,12 +102,16 @@ const User = require("J:\\Storage_Vent\\Programming_Module\\CodingBranch\\My Adm
 
 app.post("/signup", (req, res) => {
   console.log("GONE121")
+  console.log("XXX1")  
     // Form validation
+  console.log(req.body)
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
+  console.log("XXX12")  
     if (!isValid) {
       return res.status(400).json(errors);
     }
+  console.log("XXX")  
   User.Notes.findOne({ fname: req.body.fname }).then(user => {
       if (user) {
         return res.status(400).json({ fname: "Name already exists" });
@@ -187,7 +191,8 @@ app.use(passport.initialize());
 require("J:\\Storage_Vent\\Programming_Module\\CodingBranch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\config\\passport")(passport);
 // Passport middleware
 // Routes
-app.use("E:\\The_Storage_Vent\\Programming_Module\\Coding Branch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\routes\\api\\user", users);
+//J:\Storage_Vent\Programming_Module\CodingBranch\My Administrative Projetcs\Project-Ganime-Industry-v2\main2\Ganime-Indstustries\routes\api\user.js
+app.use("J:\\Storage_Vent\\Programming_Module\\Coding Branch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\routes\\api\\user", users);
 //app.use(express.static(path.join(__dirname, 'public')))
 //app.set('views', path.join(__dirname, 'views'))
 //app.set('view engine', 'ejs')

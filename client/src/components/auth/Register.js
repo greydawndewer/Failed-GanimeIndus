@@ -47,7 +47,8 @@ class SignUp extends Component {
       fname: this.state.fname,
       lname: this.state.lname,
     };
-    this.props.registerUser(newUser, this.props.history); 
+    console.log(newUser);
+    this.props.dispatch(registerUser(newUser, this.props.history)); 
     console.log(newUser);
   };
 
@@ -131,5 +132,5 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser }
-)(withRouter(SignUp));
+export default withRouter(connect(mapStateToProps, { registerUser }
+)(SignUp));
