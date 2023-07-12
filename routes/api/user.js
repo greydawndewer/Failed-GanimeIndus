@@ -16,8 +16,13 @@ const User = require("J:/Storage_Vent/Programming_Module/CodingBranch/My Adminis
 /*router.get('/', (req, res) => {
   res.send("CHUTIYA")
 });*/
+console.log("PP HEAD")
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
+router.get("/", (req, res) => {
+    print("YOOOOOO")
+    res.send("<h1>POG</h1>")
+});
 router.post("/signup", (req, res) => {
   console.log("GONE")
     // Form validation

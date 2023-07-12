@@ -8,8 +8,8 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      password: "",
+      fname: "",
+      lname: "",
       errors: {}
     };
   }
@@ -59,7 +59,7 @@ return (
                 <b>Login</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
+                Don't have an account? <Link to="/signup">Register</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
@@ -68,13 +68,13 @@ return (
                   onChange={this.onChange}
                   value={this.state.name}
                   error={errors.name}
-                  id="name"
+                  id="fname"
                   type="text"
                   className={classnames("", {
-                    invalid: errors.name || errors.namenotfound
+                    invalid: errors.fname || errors.fnamenotfound
                   })}
                 />
-                <label htmlFor="name">UserName</label>
+                <label htmlFor="fname">UserName</label>
                 <span className="red-text">
                   {errors.username}
                   {errors.usernamenotfound}

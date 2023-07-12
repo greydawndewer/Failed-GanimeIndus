@@ -1,12 +1,13 @@
 //var http = require('http'); // Import Node.js core module
 //var fs = require('fs');
 var express = require('express')
+const cors = require('cors');
 let result = [];
 var path = require('path')
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8000
 const app = express(); 
-const users = require("J:/Storage_Vent/Programming_Module/CodingBranch/My Administrative Projetcs/Project-Ganime-Industry-v2/main2/Ganime-Indstustries/routes/api/user.js");
+const users = require("./routes/api/user");
 //J:\\The_Storage_Vent\\Programming_Module\\Coding Branch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\
 const passport = require("passport");
 //const passport = require("J:\\The_Storage_Vent\\Programming_Module\\Coding Branch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\config\\passport.js");
@@ -28,7 +29,7 @@ const router1 = require('J:/Storage_Vent/Programming_Module/CodingBranch/My Admi
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 const db = require("J:/Storage_Vent/Programming_Module/CodingBranch/My Administrative Projetcs/Project-Ganime-Industry-v2/main2/Ganime-Indstustries/config/key.js").mongoURI;
-mongoose.connect(db, { useNewUrlParser: true }, { useUnifiedTopology: true });
+//mongoose.connect(db, { useNewUrlParser: true }, { useUnifiedTopology: true });
 /*app.post('/pages/signup.html', async (req, res) => {
   /*z = getCount();
   console.log(z);
@@ -91,6 +92,7 @@ app.post('/pages/login.html', async (req, res) => {
       }
     //res.redirect('home.html');
 });*/
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const keys = require("J:\\Storage_Vent\\Programming_Module\\CodingBranch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\config\\key.js");
@@ -108,8 +110,8 @@ app.post("/signup", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
   console.log("XXX12")  
-    if (!isValid) {
-      return res.status(400).json(errors);
+  if (!isValid) {
+      return res.status(420).json(errors);
     }
   console.log("XXX")  
   User.Notes.findOne({ fname: req.body.fname }).then(user => {
@@ -140,7 +142,7 @@ app.get("/", (req, res) => {
     res.send("<h1>DEEZE NUTZ</h1>")
 });
 
-  app.post("/login", (req, res) => {
+app.post("/login", (req, res) => {
     // Form validation
   const { errors, isValid } = validateLoginInput(req.body);
   // Check validation
@@ -186,17 +188,21 @@ app.get("/", (req, res) => {
       });
     });
   });
-
+console.log("P1")
 app.use(passport.initialize());
 require("J:\\Storage_Vent\\Programming_Module\\CodingBranch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\config\\passport")(passport);
 // Passport middleware
+console.log("P2")
 // Routes
 //J:\Storage_Vent\Programming_Module\CodingBranch\My Administrative Projetcs\Project-Ganime-Industry-v2\main2\Ganime-Indstustries\routes\api\user.js
-app.use("J:\\Storage_Vent\\Programming_Module\\Coding Branch\\My Administrative Projetcs\\Project-Ganime-Industry-v2\\main2\\Ganime-Indstustries\\routes\\api\\user", users);
-//app.use(express.static(path.join(__dirname, 'public')))
-//app.set('views', path.join(__dirname, 'views'))
-//app.set('view engine', 'ejs')
-//app.get('/', (req, res) => res.render('index'))
+app.use("/api/user", users);
+app.use(cors());
+app.use(express.json());
+console.log("P3")
+/*app.use(express.static(path.join(__dirname, 'public')))
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.get('/', (req, res) => res.render('index'))*/
 app.get("/*", function(req, res) {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
 });

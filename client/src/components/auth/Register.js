@@ -120,7 +120,7 @@ class SignUp extends Component {
     );
   }
   }
-
+console.log("UO?")
 SignUp.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -131,6 +131,9 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
-
-export default withRouter(connect(mapStateToProps, { registerUser }
-)(SignUp));
+console.log("UO?")
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(SignUp));
+console.log("UO?")

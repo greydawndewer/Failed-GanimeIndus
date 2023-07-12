@@ -1,5 +1,153 @@
-.mf {
-    background: #000;
-    color:white;
-    border:10px;
-} 
+@import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap%27');
+
+:root {
+    --primary-color: #3a3b3a;
+    --secondary-color: #d68709;
+    --accent-color: rgb(214, 213, 213);
+    --background-color: #fac682;
+    --text-color: #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+header {
+    background-color: var(--secondary-color);
+    height:  4.6875rem;
+}
+
+nav {
+    display: flex;
+}
+
+#hreo {
+    background-image: url(https://www.ning.com/wp-content/uploads/2019/05/create-food-website.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    position: relative;
+}
+
+.hero-content {
+    height: 100vh;
+    text-align: center;
+}
+
+.hero-header {
+    font-size: 3rem;
+    padding-top: 25rem;
+}
+
+.hero-p-text {
+    font-size: 1.25rem;
+    padding-top: 5.25rem;
+    padding-bottom: 6.25rem;
+}
+
+.btn1 {
+    color: #fff;
+    font-size: 1.125rem;
+    margin-top: 1rem;
+    margin-left: 3.5rem;
+    border: 0.1rem solid var(--accent-color);
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+}
+
+.btn2 {
+    color: #fff;
+    font-size: 1.125rem;
+    margin-top: 1rem;
+    margin-left: 3.5rem;
+    border: 0.1rem solid var(--accent-color);
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+}
+
+#menu {
+    background-color: var(--background-color);
+    margin-bottom: 1000px;
+  }
+
+  .main-header {
+    text-align: center;
+    font-size: 2.5rem;
+    padding: 12.5rem;
+  }
+
+  .food {
+    margin-left: 6.25rem;
+    font-size: 2.25rem;
+  }
+
+  .menu-content {
+    display: flex;
+  }
+
+  .menu-content img {
+    width: 40%;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+
+  .text-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .menu-header,
+  .menu-p-text,
+  .price {
+    margin-top: 0;
+    font-size: 1.125rem;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+li {
+    list-style-type: none;
+}
+
+.menu-warpper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

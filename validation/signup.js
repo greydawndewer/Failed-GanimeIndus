@@ -6,6 +6,7 @@ module.exports = function validateRegisterInput(data) {
   data.fname = !isEmpty(data.fname) ? data.fname : "";
   data.lname = !isEmpty(data.lname) ? data.lname : "";
 // Name checks
+  console.log(data.fname)
   if (Validator.isEmpty(data.fname)) {
     errors.fname = "Username field is required";
   }
@@ -16,6 +17,7 @@ module.exports = function validateRegisterInput(data) {
     errors.email = "Email is invalid";
   }*/
 // Password checks
+  console.log(data.lname)
   if (Validator.isEmpty(data.lname)) {
     errors.lname = "Password field is required";
   }
